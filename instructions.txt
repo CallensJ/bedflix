@@ -1,0 +1,22 @@
+Une page de connexion
+○ un fond présentant une galerie de films et séries disponibles:
+○ un formulaire en deux étapes (écran 1: email -> écran 2: mot de passe)
+● Une navbar avec les liens pour l’accueil/séries/films/profil (sur toutes les pages sauf inscription/connexion)  <== IN PROGRESS 
+● Un footer présentant les réseaux sociaux du site (et un lien vers une API à faire) (sur toutes les pages sauf inscription/connexion)
+● Une page d’accueil
+○ propose un film ou une série en vogue actuellement, parmi les plus consultées en ce moment…
+○ plusieurs carrousels mêlant films et séries (en ce moment, genres tendances, personnalisées pour l’utilisateur)
+● Une page séries
+○ présentant un filtre de genres
+○ une série tendance mise en avant
+○ des carrousels par genre
+○ un filtre de catégories (thriller/action/ados/anime/drame/enfant/policier/horreur/sci-fi/téléréalité)
+● Une page films
+○ présentant un filtre de genres
+○ un film tendance mise en avant
+○ des carrousels par genre
+○ un filtre de catégories (thriller/action/anime/drame/enfant/policier/horreur/sci-fi)
+● Une page d’administration (cette page peut-être différente du reste du site, je vous laisse vous inspirer de modèles sur internet, voire d’en créer une par vous-même) où des CRUD seront mis en oeuvre
+○ formulaire d'ajout/édition/suppression de contenu (films/séries/saisons/épisodes) (BDD)
+TP Bedflix
+● (BONUS) réaliser une partie des tests unitaires sur l’API et sur l’application web

@@ -1,7 +1,7 @@
-Une page de connexion
+Une page de connexion <== IN PROGRESS
 ○ un fond présentant une galerie de films et séries disponibles:
 ○ un formulaire en deux étapes (écran 1: email -> écran 2: mot de passe)
-● Une navbar avec les liens pour l’accueil/séries/films/profil (sur toutes les pages sauf inscription/connexion)  <== IN PROGRESS 
+● Une navbar avec les liens pour l’accueil/séries/films/profil (sur toutes les pages sauf inscription/connexion)  <== DONE
 ● Un footer présentant les réseaux sociaux du site (et un lien vers une API à faire) (sur toutes les pages sauf inscription/connexion)
 ● Une page d’accueil
 ○ propose un film ou une série en vogue actuellement, parmi les plus consultées en ce moment…

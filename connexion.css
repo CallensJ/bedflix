@@ -1,0 +1,97 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500&family=Roboto:wght@300;400;500&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+  font-family: "Roboto", sans-serif;
+}
+
+section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background: url("./assets/background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  animation: bgAnimation 5s linear infinite;
+}
+@keyframes bgAnimation {
+  100% {
+    filter: hue-rotate(360deg);
+  }
+}
+section .wrapper {
+  border-radius: 1rem;
+  width: 35rem;
+  height: 30rem;
+  display: flex;
+  border: 2px solid hsl(186.67, 49.09%, 10.78%);
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  -webkit-backdrop-filter: blur(1rem);
+          backdrop-filter: blur(1rem);
+}
+section .wrapper form .title {
+  color: rgb(255, 255, 255);
+  letter-spacing: 0.1rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+section .wrapper form .text {
+  color: hsl(198, 6.94%, 28.24%);
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+section .wrapper form .input-bloc {
+  margin: 1rem 0;
+  border: 1px solid hsl(198, 6.94%, 28.24%);
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+section .wrapper form .input-bloc .input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: rgb(255, 255, 255);
+  caret-color: transparent;
+}
+section .wrapper form .input-bloc:focus-within {
+  border: 1px solid hsl(215.56, 100%, 47.65%);
+}
+section .wrapper form .input-bloc .icon {
+  color: rgb(255, 255, 255);
+  font-size: 1.4rem;
+  margin-right: 1rem;
+  vertical-align: middle;
+}
+section .wrapper form .input-bloc .showPassword {
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+}
+section .wrapper form .rememberMe {
+  padding: 0.5rem;
+}
+section .wrapper form .rememberMe input {
+  margin-right: 0.5rem;
+}
+section .wrapper form .rememberMe label {
+  color: rgb(255, 255, 255);
+}
+section .wrapper form button {
+  width: 100%;
+  padding: 0.8rem;
+  margin: 2rem 0;
+  border-radius: 0.5rem;
+  border: none;
+  background-color: hsl(215.56, 100%, 47.65%);
+  color: rgb(255, 255, 255);
+}/*# sourceMappingURL=styles.css.map */

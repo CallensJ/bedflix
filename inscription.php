@@ -2,14 +2,13 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="connexion.css" />
-  <title>Login page</title>
+  <title>inscription</title>
 </head>
 
 <body>
-
 
   <?php
   session_start();
@@ -17,30 +16,37 @@
 
   if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = filter_var($_POST['user_email'], FILTER_SANITIZE_EMAIL);
-    $password = $_POST['user_password'];
+    $password = password_hash($_POST['user_password'], PASSWORD_BCRYPT);
+
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+      $_SESSION['error'] = "email invalid";
+      header('Location: inscription.php');
+      exit();
+    }
 
     try {
-      $select = $db->prepare("SELECT * FROM utilisateurs WHERE email = :email");
-      $select->execute(['user_email' => $email]);
-      $user = $select->fetch(PDO::FETCH_ASSOC);
-
-      if ($user && password_verify($password, $user['user_password'])) {
-        $_SESSION['user_id'] = $user['id'];
-        header('Location: accueil.php');
-        exit();
-      } else {
-        $_SESSION['error'] = "Email ou mot de passe incorrect.";
-        header('Location: connexion.php');
-        exit();
-      }
-    } catch (PDOException $e) {
-      var_dump($e);
-      $_SESSION['error'] = "Erreur";
+      $insert = $pdo->prepare("INSERT INTO utilisateurs (user_email, user_password) VALUES (:email, :password)");
+      $insert->execute(['user_email' => $email, 'user_password' => $password]);
+      $_SESSION['success'] = "inscription reussie";
       header('Location: connexion.php');
+      exit();
+    } catch (PDOException $e) {
+      var_dump($e->getCode());  //https://www.php.net/manual/en/exception.getcode.php
+      if ($e->getCode() === '23000') {
+        $_SESSION['error'] = "email existe deja";
+        echo 'email existe deja';
+      } else {
+        $_SESSION['error'] = "Error";
+      }
+      header('Location: inscription.php');
       exit();
     }
   }
+
+
+
   ?>
+
 
   <section>
     <div class="wrapper">
@@ -49,11 +55,11 @@
         <p class="text">Login to manage your account</p>
         <!-- ====== input bloc email ====== -->
         <div class="input-bloc">
-          <input type="hidden" name="form_connexion" value="1">
+          <input type="hidden" name="form_inscription" value="1">
           <span class="icon">
             <ion-icon name="mail-outline"></ion-icon>
           </span>
-          <input class="input" type="email" name="form_email" placeholder="Your email" id="email" />
+          <input class="input" type="text" name="form_email" placeholder="Your email" id="email" />
         </div>
         <!-- ====== input bloc password ====== -->
         <div class="input-bloc">
@@ -68,7 +74,7 @@
           <input type="checkbox" />
           <label>Remember me</label>
         </div>
-        <button type="submit" class="btn" id="submit">connexion</button>
+        <button type="submit" class="btn" id="submit">Register</button>
       </form>
     </div>
   </section>
@@ -81,6 +87,9 @@
     src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
   <script src="script.js"></script>
   <!-- background image : Paul Volkmer: https://unsplash.com/fr/@laup -->
+</body>
+
+</html>
 </body>
 
 </html>

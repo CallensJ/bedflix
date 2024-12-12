@@ -14,6 +14,17 @@
     <title>Bedflix</title>
   </head>
   <body>
+  <?php
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    header('Location: connexion.php');
+    exit();
+}
+
+echo "Bienvenue";
+?>
+
     <div class="container">
       <header>
         <nav>

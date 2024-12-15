@@ -1,4 +1,9 @@
-<?php   session_start(); ?>
+<?php  
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+session_start(); ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -18,17 +23,19 @@
   require 'db.php';
 
   if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = filter_var($_POST['user_email'], FILTER_SANITIZE_EMAIL);
-    $password = $_POST['user_password'];
+    $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+    $password = $_POST['password'];
 
     try {
-      $select = $db->prepare("SELECT * FROM utilisateurs WHERE email = :email");
-      $select->execute(['user_email' => $email]);
+      $select = $db->prepare("SELECT * FROM utilisateurs WHERE email_utilisateur = :email");
+      $select->execute(['email' => $email]);
       $user = $select->fetch(PDO::FETCH_ASSOC);
 
-      if ($user && password_verify($password, $user['user_password'])) {
-        $_SESSION['user_id'] = $user['id'];
-        header('Location: accueil.php');
+      if ($user && password_verify($password, $user['mot_de_passe_utilisateur'])) {
+        echo "Mot de passe correct.";
+        $_SESSION['id_utilisateur'] = $user['id_utilisateur'];
+        var_dump($user);
+        header('Location: home.php');
         exit();
       } else {
         $_SESSION['error'] = "Email ou mot de passe incorrect.";
@@ -55,14 +62,14 @@
           <span class="icon">
             <ion-icon name="mail-outline"></ion-icon>
           </span>
-          <input class="input" type="email" name="form_email" placeholder="Your email" id="email" />
+          <input class="input" type="email" name="email" placeholder="Your email" id="email" />
         </div>
         <!-- ====== input bloc password ====== -->
         <div class="input-bloc">
           <span class="icon">
             <ion-icon name="key-sharp"></ion-icon>
           </span>
-          <input class="input" type="password" placeholder="your password" name="form_password" id="password" />
+          <input class="input" type="password" placeholder="your password" name="password" id="password" />
           <span class="showPassword" id="togglePassword">show</span>
         </div>
         <!-- ====== Remember Me Bloc ====== -->

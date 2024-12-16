@@ -5,10 +5,10 @@
         </div>
         <nav class="nav">
             <ul>
-                <li><a href="home.html">Accueil</a></li>
-                <li><a href="series.html">Séries</a></li>
-                <li><a href="films.html">Films</a></li>
-                <li><a href="admin.html">Profil</a></li>
+                <li><a href="home.php">Accueil</a></li>
+                <li><a href="series.php">Séries</a></li>
+                <li><a href="films.php">Films</a></li>
+                <li><a href="profil.php">profil</a></li>
             </ul>
         </nav>
         <div class="search-avatar">

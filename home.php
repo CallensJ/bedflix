@@ -3,7 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="navbar.css">
+    <link rel="stylesheet" href="footer.css">
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
@@ -22,27 +24,55 @@ if (!isset($_SESSION['id_utilisateur'])) {
     exit();
 }
 
-echo "Bienvenue";
+?>
+<?php 
+
+include 'navbar.php'
 ?>
 
-    <div class="container">
-      <header>
-        <nav>
-          <div class="leftside">
-            <h2>BED<span>FLIX</span></h2>
-            <ul>
-              <li><a href="#">Accueil</a></li>
-              <li><a href="#">Series</a></li>
-              <li><a href="#">Films</a></li>
-            </ul>
-          </div>
-          <div class="rightside">
-            <input type="text" />
-            <i class="fa-regular fa-bell"></i>
-            <div class="avatar"></div>
-          </div>
-        </nav>
-      </header>
-    </div>
+    <!-- Page d'accueil -->
+    <main class="main">
+        <section class="hero">
+            <h2>Film/Série en vogue : The Witcher</h2>
+            <p>"Découvrez l'histoire légendaire de Geralt de Riv, un sorceleur solitaire..."</p>
+            <button>Lire</button>
+            <button>Ajouter à ma liste</button>
+        </section>
+
+        <section class="carousels">
+            <div class="carousel">
+                <h3>En ce moment</h3>
+                <div class="grid">
+                    <div class="item"><img src="movie1.jpg" alt="Movie 1"></div>
+                    <div class="item"><img src="movie2.jpg" alt="Movie 2"></div>
+                    <div class="item"><img src="movie3.jpg" alt="Movie 3"></div>
+                </div>
+            </div>
+
+            <div class="carousel">
+                <h3>Genres tendances</h3>
+                <div class="grid">
+                    <div class="item"><img src="genre1.jpg" alt="Genre 1"></div>
+                    <div class="item"><img src="genre2.jpg" alt="Genre 2"></div>
+                    <div class="item"><img src="genre3.jpg" alt="Genre 3"></div>
+                </div>
+            </div>
+
+            <div class="carousel">
+                <h3>Recommandés pour vous</h3>
+                <div class="grid">
+                    <div class="item"><img src="recommend1.jpg" alt="Recommend 1"></div>
+                    <div class="item"><img src="recommend2.jpg" alt="Recommend 2"></div>
+                    <div class="item"><img src="recommend3.jpg" alt="Recommend 3"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <?php 
+
+include 'footer.php';
+?>
+
   </body>
 </html>

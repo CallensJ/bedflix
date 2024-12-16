@@ -41,10 +41,10 @@
 
 
 
-    try   {
+    try {
       //verif si email existe deja dans la bdd
       $check = $db->prepare("SELECT COUNT(*) FROM utilisateurs WHERE email_utilisateur = :email");
-      
+
       $check->execute(['email' => $email]);
 
 
@@ -70,14 +70,13 @@
         'password' => $password,
         'photo' => $defaultPhoto,
         'role' => $idRole
-        
+
       ]);
       $_SESSION['success'] = "inscription reussie";
       header('Location: connexion.php');
       exit();
-
     } catch (PDOException $e) {
-     
+
       if ($e->getCode() === '23000') { //https://www.php.net/manual/en/exception.getcode.php
         $_SESSION['error'] = "email existe deja";
         echo 'email existe deja';

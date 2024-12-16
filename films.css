@@ -1,0 +1,76 @@
+/* Films Page Styles */
+.hero-films {
+    background-image: url('films-hero.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-align: center;
+    padding: 100px 20px;
+}
+
+.hero-films h2 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.hero-films p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.hero-films button {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin: 0 5px;
+    border: none;
+    border-radius: 4px;
+    background-color: #e50914;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.hero-films button:hover {
+    background-color: #b00610;
+}
+
+.filters {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.filters select {
+    padding: 10px;
+    font-size: 16px;
+    margin: 0 10px;
+    border: 1px solid #333;
+    border-radius: 4px;
+    background-color: #222;
+    color: white;
+}
+
+.genre-carousel {
+    padding: 20px;
+}
+
+.genre-carousel h3 {
+    font-size: 24px;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.genre-carousel .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+}
+
+.genre-carousel .item img {
+    width: 100%;
+    border-radius: 8px;
+    transition: transform 0.3s;
+}
+
+.genre-carousel .item img:hover {
+    transform: scale(1.05);
+}

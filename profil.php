@@ -25,23 +25,24 @@ include 'navbar.php'
     <header class="profile-header">
         <h1>Mon Profil</h1>
     </header>
+    <h3>Modifier vos informations</h3>
     <main class="profile-main">
-        <form class="profile-form" action="update_user.php" method="POST" enctype="multipart/form-data">
+        <form class="profile-form" action="profil.php" method="POST" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="nom">Nom :</label>
-                <input type="text" id="nom" name="nom_utilisateur" required>
+                <input type="text" id="nom" name="nom_utilisateur">
             </div>
             <div class="form-group">
                 <label for="prenom">Prénom :</label>
-                <input type="text" id="prenom" name="prenom_utilisateur" required>
+                <input type="text" id="prenom" name="prenom_utilisateur">
             </div>
             <div class="form-group">
                 <label for="email">Email :</label>
-                <input type="email" id="email" name="email_utilisateur" required>
+                <input type="email" id="email" name="email_utilisateur">
             </div>
             <div class="form-group">
                 <label for="pseudo">Pseudo :</label>
-                <input type="text" id="pseudo" name="pseudo_utilisateur" required>
+                <input type="text" id="pseudo" name="pseudo_utilisateur">
             </div>
             <div class="form-group">
                 <label for="photo">Photo de profil :</label>
@@ -49,7 +50,7 @@ include 'navbar.php'
             </div>
             <div class="form-group">
                 <label for="password">Mot de passe :</label>
-                <input type="password" id="password" name="mot_de_passe_utilisateur" required>
+                <input type="password" id="password" name="mot_de_passe_utilisateur">
             </div>
             <button type="submit">Mettre à jour</button>
         </form>

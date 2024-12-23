@@ -1,4 +1,17 @@
-    <!-- Navbar -->
+<?php
+require 'db.php';
+$userId = $_SESSION['id_utilisateur'];
+$sql = "SELECT photo_profil_utilisateur FROM utilisateurs WHERE id_utilisateur = :id_utilisateur";
+$stmt = $db->prepare($sql);
+$stmt->execute([':id_utilisateur' => $userId]);
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+// Définir l'URL de la photo
+$photoUrl = !empty($user['photo_profil_utilisateur']) ? 'uploads/' . $user['photo_profil_utilisateur'] : 'assets/default.png';
+?>  
+  
+  
+  <!-- Navbar -->
     <header class="header">
         <div class="logo">
             <h1>BedFlix</h1>
@@ -13,7 +26,7 @@
         </nav>
         <div class="search-avatar">
             <input type="text" placeholder="Rechercher...">
-            <img src="<?php echo isset($photoUrl) ? $photoUrl : 'assets/default.png'; ?>" alt="Avatar" class="avatar">
+            <img src="<?php echo $photoUrl; ?>" alt="Avatar" class="avatar">
         </div>
     </header>
     <div id="modal" class="modal">

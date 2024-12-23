@@ -17,8 +17,7 @@ if (!isset($_SESSION['id_utilisateur'])) {
 //fonction mise a jour
 function updateUser($db, $userId, $nom = null, $prenom = null, $email = null, $pseudo = null, $mdp = null, $avatar = null)
 {
-    $userId = $_SESSION['id_utilisateur']; // Récupération de l'ID depuis la session   
-    $fields = [];
+    $userId = $_SESSION['id_utilisateur'];
     $params = [':id_utilisateur' => $userId];
 
     if ($nom !== null) {
@@ -78,28 +77,36 @@ function updateUser($db, $userId, $nom = null, $prenom = null, $email = null, $p
     <h3>Modifier vos informations</h3>
     <main class="profile-main">
         <?php
-            $utilisateur = $stmt->fetch(PDO::FETCH_ASSOC);
+
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $action = isset($_POST['action']) ? $_POST['action'] : null;
 
             if ($action === 'update') {
-       
+
                 $userId = $_SESSION['id_utilisateur'];
                 $pseudo = !empty($_POST['pseudo_utilisateur']) ? $_POST['pseudo_utilisateur'] : null;
                 $nom = !empty($_POST['nom_utilisateur']) ? $_POST['nom_utilisateur'] : null;
                 $prenom = !empty($_POST['prenom_utilisateur']) ? $_POST['prenom_utilisateur'] : null;
                 $email = !empty($_POST['email_utilisateur']) ? $_POST['email_utilisateur'] : null;
                 $mdp = !empty($_POST['mot_de_passe_utilisateur']) ? $_POST['mot_de_passe_utilisateur'] : null;
-                
-                
+                $avatar = null;
 
-                if (!empty($_FILES['photo_profil_utilisateur']['tmp_name'])) {
-                    move_uploaded_file($_FILES['photo_profil_utilisateur']['tmp_name'], "uploads/" . $avatar);
+
+
+                if (!empty($_FILES['photo_profil_utilisateur']['name'])) {
+                    $avatar = basename($_FILES['photo_profil_utilisateur']['name']);
+                    $uploadDir = "uploads/";
+                    $uploadFile = $uploadDir . $avatar;
+                    if (move_uploaded_file($_FILES['photo_profil_utilisateur']['tmp_name'], $uploadFile)) {
+                        echo "image upload successfull";
+                    } else {
+                        $avatar = null;
+                    }
                 }
 
                 try {
-                    updateUser($db, $userId, $pseudo, $nom, $prenom, $email, $avatar, $mdp);
+                    updateUser($db, $userId, $nom, $prenom, $email, $pseudo, $mdp, $avatar);
                     echo "<p>Utilisateur mis à jour avec succès !</p>";
                 } catch (Exception $e) {
                     echo "<p>Erreur lors de la mise à jour : " . $e->getMessage() . "</p>";

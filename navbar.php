@@ -34,7 +34,7 @@ $photoUrl = !empty($user['photo_profil_utilisateur']) ? 'uploads/' . $user['phot
         <span class="close">&times;</span>
         <ul>
             <li><a href="profil.php">Voir Profil</a></li>
-            <li><a href="deconnexion.php">Déconnexion</a></li>
+            <li><a href="logout.php">Déconnexion</a></li>
         </ul>
     </div>
 </div>

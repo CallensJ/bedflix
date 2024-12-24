@@ -1,6 +1,6 @@
 /* Films Page Styles */
-.hero-films {
-    background-image: url('films-hero.jpg');
+.hero{
+    background-image: url('assets/film-hero.jpg');
     background-size: cover;
     background-position: center;
     color: white;
@@ -8,17 +8,17 @@
     padding: 100px 20px;
 }
 
-.hero-films h2 {
+.hero h2 {
     font-size: 36px;
     margin-bottom: 10px;
 }
 
-.hero-films p {
+.hero p {
     font-size: 18px;
     margin-bottom: 20px;
 }
 
-.hero-films button {
+.hero button {
     padding: 10px 20px;
     font-size: 16px;
     margin: 0 5px;
@@ -30,7 +30,7 @@
     transition: background-color 0.3s;
 }
 
-.hero-films button:hover {
+.hero button:hover {
     background-color: #b00610;
 }
 

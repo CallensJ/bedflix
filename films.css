@@ -1,4 +1,7 @@
 /* Films Page Styles */
+.main{
+    background-color: #2b2b2b;
+}
 .hero{
     background-image: url('assets/film-hero.jpg');
     background-size: cover;
@@ -34,43 +37,40 @@
     background-color: #b00610;
 }
 
-.filters {
-    margin: 20px 0;
-    text-align: center;
+
+
+.categories-container {
+    margin: 20px;
 }
 
-.filters select {
-    padding: 10px;
-    font-size: 16px;
+.carousel-container {
+    margin-bottom: 40px;
+}
+
+.carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding: 10px 0;
+}
+
+.carousel-item {
+    flex: 0 0 auto;
     margin: 0 10px;
-    border: 1px solid #333;
-    border-radius: 4px;
-    background-color: #222;
-    color: white;
+    width: 150px; /* Ajuster selon la taille désirée */
+    height: 220px; /* Ajuster selon la taille désirée */
+    overflow: hidden;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.genre-carousel {
-    padding: 20px;
-}
-
-.genre-carousel h3 {
-    font-size: 24px;
-    color: white;
-    margin-bottom: 10px;
-}
-
-.genre-carousel .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 15px;
-}
-
-.genre-carousel .item img {
+.carousel-item img {
     width: 100%;
-    border-radius: 8px;
-    transition: transform 0.3s;
+    height: 100%;
+    object-fit: cover; /* Pour ajuster l'image */
 }
 
-.genre-carousel .item img:hover {
-    transform: scale(1.05);
+h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
 }

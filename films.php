@@ -7,9 +7,37 @@ if (!isset($_SESSION['id_utilisateur'])) {
 }
 
 ?>
+<?php
+require 'db.php';
+try {
+    // Préparation de la requête pour récupérer les affiches et les catégories
+    $stmt = $db->prepare("
+        SELECT c.libelle_categorie, f.affiche_film 
+        FROM films f
+        JOIN films_categories fc ON f.id_film = fc.id_film
+        JOIN categories c ON fc.id_categorie = c.id_categorie
+        ORDER BY c.libelle_categorie
+    ");
+    $stmt->execute();
+
+    // Récupérer les résultats
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    // Organiser les films par catégorie
+    $filmsParCategorie = [];
+    foreach ($results as $row) {
+        $filmsParCategorie[$row['libelle_categorie']][] = $row['affiche_film'];
+    }
+} catch (PDOException $e) {
+    echo "Erreur : " . $e->getMessage();
+}
+?>
+
+
 
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,8 +46,9 @@ if (!isset($_SESSION['id_utilisateur'])) {
     <link rel="stylesheet" href="navbar.css">
     <link rel="stylesheet" href="footer.css">
 </head>
+
 <body>
-    <?php 
+    <?php
 
     include 'navbar.php';
     ?>
@@ -30,57 +59,39 @@ if (!isset($_SESSION['id_utilisateur'])) {
             <h2>Film tendance : Inception</h2>
             <p>"Explorez le monde des rêves et de la manipulation du subconscient."</p>
             <button>Lire</button>
-            <button>Ajouter à ma liste</button>
+
         </section>
-
-        <section class="filters">
-            <h3>Filtres de genres</h3>
-            <div class="genres">
-                <button>Thriller</button>
-                <button>Action</button>
-                <button>Anime</button>
-                <button>Drame</button>
-                <button>Enfant</button>
-                <button>Policier</button>
-                <button>Horreur</button>
-                <button>Sci-fi</button>
-            </div>
-        </section>
-
-        <section class="carousels">
-            <div class="carousel">
-                <h3>Drame</h3>
-                <div class="grid">
-                    <div class="item"><img src="drama1.jpg" alt="Drame 1"></div>
-                    <div class="item"><img src="drama2.jpg" alt="Drame 2"></div>
-                    <div class="item"><img src="drama3.jpg" alt="Drame 3"></div>
+        <div class="categories-container">
+            <?php foreach ($filmsParCategorie as $categorie => $films): ?>
+                <div class="carousel-container">
+                    <h3><?= htmlspecialchars($categorie) ?></h3>
+                    <div class="carousel">
+                        <?php foreach ($films as $affiche): ?>
+                            <?php
+                            // Convertir les données binaires en Base64
+                            $imageSrc = 'data:image/jpeg;base64,' . base64_encode($affiche);
+                            ?>
+                            <div class="carousel-item">
+                                <img src="<?= $imageSrc ?>" alt="Affiche du film">
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
                 </div>
-            </div>
+            <?php endforeach; ?>
+        </div>
 
-            <div class="carousel">
-                <h3>Sci-fi</h3>
-                <div class="grid">
-                    <div class="item"><img src="scifi1.jpg" alt="Sci-fi 1"></div>
-                    <div class="item"><img src="scifi2.jpg" alt="Sci-fi 2"></div>
-                    <div class="item"><img src="scifi3.jpg" alt="Sci-fi 3"></div>
-                </div>
-            </div>
+        <div>
+            <h3>Films</h3>
+        </div>
 
-            <div class="carousel">
-                <h3>Action</h3>
-                <div class="grid">
-                    <div class="item"><img src="action1.jpg" alt="Action 1"></div>
-                    <div class="item"><img src="action2.jpg" alt="Action 2"></div>
-                    <div class="item"><img src="action3.jpg" alt="Action 3"></div>
-                </div>
-            </div>
-        </section>
+
     </main>
 
-    <?php 
+    <?php
 
-include 'footer.php';
-?>
+    include 'footer.php';
+    ?>
 
 </body>
+
 </html>
